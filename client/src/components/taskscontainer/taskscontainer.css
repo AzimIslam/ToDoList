@@ -1,0 +1,28 @@
+.tasksContainer {
+    margin-top: 1rem;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.tasksContainer p {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+h2 {
+    display: flex;
+    margin-top: 1rem;
+    font-size: 2em;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#tasksCountLabel {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-right: 10px;
+}
