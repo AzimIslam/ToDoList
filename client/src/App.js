@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App" style={ styles }>
+    <div className="App">
       <Header colour="#B22222">To-Do List</Header>
     </div>
   );
