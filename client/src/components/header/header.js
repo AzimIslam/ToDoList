@@ -9,7 +9,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <header>
-                <h2 style={{backgroundColor: this.props.colour}}>{this.props.children}</h2>
+                <h1 style={{backgroundColor: this.props.colour}}>{this.props.children}</h1>
             </header>
         );
     }

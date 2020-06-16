@@ -8,7 +8,7 @@ export default class InputForm extends React.Component {
     render() {
         return (
             <div class="submit">
-                <TextField style={{width: '40%'}} id="standard-basic" label="Add Todo..." />
+                <TextField style={{width: '45%'}} id="standard-basic" label="Add Todo..." />
                 <Button variant="contained" color="secondary">Add</Button>
             </div>
         );
