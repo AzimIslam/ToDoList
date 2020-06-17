@@ -39,8 +39,8 @@ export default class InputForm extends React.Component {
 
             xhr.onreadystatechange = () => {
                 if(xhr.readyState == XMLHttpRequest.DONE) {
-                    this.props.tasksProp.push({id: xhr.responseText.id, task: this.state.task});
-                    alert(JSON.parse(xhr.responseText).id);
+                    const response = JSON.parse(xhr.responseText)
+                    this.props.tasksProp.push({id: response.id, task: this.state.task});
                 }
             }
         }
