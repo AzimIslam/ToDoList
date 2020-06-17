@@ -32,10 +32,11 @@ router.post('/add', function(req, res, next) {
     $task: req.body.task
   });
   db.get("SELECT id FROM tasks ORDER BY id DESC LIMIT 1", function(err, row) {
+    console.log(row);
     if(err) {
       console.log(err)
     }
-    res.send(row.id);
+    res.send({id: row.id});
   });
 });
 
