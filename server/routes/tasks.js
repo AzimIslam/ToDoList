@@ -18,7 +18,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   // Iterates over tasks and push them as objects to tasks array
-  db.all("SELECT id, task FROM tasks", function (err, results) {
+  db.all("SELECT id, task FROM tasks ORDER BY id DESC", function (err, results) {
     if(err) {
       console.error(err);
     }
@@ -31,7 +31,12 @@ router.post('/add', function(req, res, next) {
   db.run(`INSERT INTO tasks(task) VALUES($task)`, {
     $task: req.body.task
   });
-
+  db.get("SELECT id FROM tasks ORDER BY id DESC LIMIT 1", function(err, row) {
+    if(err) {
+      console.log(err)
+    }
+    res.send(row.id);
+  });
 });
 
 

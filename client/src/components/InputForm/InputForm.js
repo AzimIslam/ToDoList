@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from "@material-ui/core/Button";
-import './inputform.css'
+import './InputForm.css'
 
 
 export default class InputForm extends React.Component {
@@ -36,6 +36,12 @@ export default class InputForm extends React.Component {
             xhr.send(JSON.stringify({
                 task: this.state.task
             }));
+
+            xhr.onreadystatechange = () => {
+                if(xhr.readyState == XMLHttpRequest.DONE) {
+                    this.props.tasksProp.push({id: xhr.responseText.id, task: this.state.task});
+                }
+            }
         }
     }
 }
