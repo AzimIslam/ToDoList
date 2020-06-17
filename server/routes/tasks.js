@@ -1,12 +1,38 @@
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const dbPath = path.resolve(__dirname, '../db/data.db')
 var express = require('express');
+const bodyParser = require('body-parser');
 var router = express.Router();
+
+router.use(bodyParser.json());
+
+// Database connection
+const db = new sqlite3.Database(dbPath, (err) => {
+  if(err) {
+    console.error(err.message);
+  }
+  console.log("Connected to SQLite database");
+});
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json([
-    {id: 1, task: "somebody"},
-    {id: 2, task: "somebody else"}
-  ]);
+  // Iterates over tasks and push them as objects to tasks array
+  db.all("SELECT id, task FROM tasks", function (err, results) {
+    if(err) {
+      console.error(err);
+    }
+    res.send(results);
+  });
 });
+
+router.post('/add', function(req, res, next) {
+  console.log(req.body.task)
+  db.run(`INSERT INTO tasks(task) VALUES($task)`, {
+    $task: req.body.task
+  });
+
+});
+
 
 module.exports = router;
