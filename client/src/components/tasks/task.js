@@ -12,7 +12,7 @@ const styles = {marginTop: "1rem"}
 export default class Task extends React.Component {
     render() {
         return(
-                <Card style={styles} key={this.props.id}>
+                <Card style={styles}>
                     <CardContent>
                         <Typography>{this.props.children}</Typography>
                         <IconButton className="binIcon" aria-label="delete">

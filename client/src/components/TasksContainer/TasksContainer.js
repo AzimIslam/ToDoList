@@ -5,7 +5,7 @@ import Task from "../tasks/task";
 
 export default class TasksContainer extends React.Component {
     createTasks(task) {
-        return <Task key={task.id}>{task.task}</Task>;
+        return <li key={task.id}><Task>{task.task}</Task></li>;
     }
     render() {
         let numOfTasks = this.props.tasksProp.length;
@@ -16,7 +16,9 @@ export default class TasksContainer extends React.Component {
                 <div id="tasksCountLabel">
                     <p>There are {numOfTasks} tasks</p>
                 </div>
-                {tasks}
+                <ul>
+                    {tasks}
+                </ul>
             </div>
         )
     }
