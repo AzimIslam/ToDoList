@@ -39,7 +39,7 @@ export default class InputForm extends React.Component {
     addPost() {
         if(this.state.task.length !== 0) {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", '/tasks/add', true);
+            xhr.open("POST", '/tasks/', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
                 task: this.state.task

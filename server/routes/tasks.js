@@ -26,8 +26,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/add', function(req, res, next) {
-  console.log(req.body.task)
+router.post('/', function(req, res, next) {
   db.run(`INSERT INTO tasks(task) VALUES($task)`, {
     $task: req.body.task
   });
@@ -35,8 +34,19 @@ router.post('/add', function(req, res, next) {
     console.log(row);
     if(err) {
       console.log(err)
+    } else {
+      res.send({id: row.id});
     }
-    res.send({id: row.id});
+  });
+});
+
+router.delete('/:id', function(req, res, next) {
+  db.run("DELETE FROM tasks WHERE id=$id", {
+    $id: req.params.id
+  }, (err) => {
+    if(err) {
+      console.log(err)
+    }
   });
 });
 
