@@ -21,12 +21,13 @@ export default class App extends React.Component {
     handleTaskUpdate(tasks) {
         this.setState({tasks});
     }
+
     render() {
         return (
             <div className="App">
                 <Header colour="#B22222">To-Do List</Header>
                 <InputForm tasksProp={this.state.tasks} onTaskUpdate={this.handleTaskUpdate}/>
-                <TasksContainer tasksProp={this.state.tasks}/>
+                <TasksContainer tasksProp={this.state.tasks} onTaskDelete={this.handleTaskUpdate}/>
             </div>
         );
     }

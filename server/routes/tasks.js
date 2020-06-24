@@ -45,7 +45,10 @@ router.delete('/:id', function(req, res, next) {
     $id: req.params.id
   }, (err) => {
     if(err) {
-      console.log(err)
+      console.log(err);
+      res.status(404);
+    } else {
+      res.status(200)
     }
   });
 });

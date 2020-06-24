@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import './task.css'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -26,16 +27,17 @@ export default class Task extends React.Component {
 
     deleteTask() {
         // Creates a DELETE request to the backend
-        var xhr = new XMLHttpRequest();
-        xhr.open("DELETE", `/tasks/${this.props.taskId}`, true);
-        xhr.send(null);
-
-        // Removes the task from the array and updates the component
-        this.deleteId(this.props.taskId);
-        this.props.onTaskDelete(this.props.tasks);
+        axios.delete('tasks/' + this.props.taskId)
+            .then(res => {
+                if (res.status === 200) {
+                    // Removes the task from the array and updates the component
+                    this.deleteId(this.props.taskId);
+                    this.props.onTaskDelete(this.props.tasks);
+                }
+            });
     }
 
-    render() {
+    render(){
         return(
                 <Card style={styles}>
                     <CardContent>
