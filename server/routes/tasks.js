@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
   db.run(`INSERT INTO tasks(task) VALUES($task)`, {
     $task: req.body.task
   });
@@ -40,13 +40,27 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.delete('/:id', function(req, res, next) {
-  db.run("DELETE FROM tasks WHERE id=$id", {
-    $id: req.params.id
+router.put("/:id", function (req, res) {
+  db.run("UPDATE tasks SET task=$task WHERE id=$id", {
+    $id: req.params.id,
+    $task: req.body.newTask
   }, (err) => {
     if(err) {
       console.error(err);
       res.status(400).send();
+      return;
+    }
+    res.status(200).send();
+  })
+});
+
+router.delete('/:id', function(req, res) {
+  db.run("DELETE FROM tasks WHERE id=$id", {
+    $id: req.params.id
+  }, (err) => {
+    if(err) {
+      res.status(400).send();
+      console.error(err);
       return;
     }
     res.status(200).send();
